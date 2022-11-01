@@ -19,7 +19,7 @@ const SearchArea = () => {
         type='search'
         value={text}
         placeholder={'検索'}
-        className='search _searchText _mainBackGroundColor'
+        className='search _searchText _mainBackGroundColorBlack'
         onChange={(e) => setText(e.target.value)}
       />
       <button className='searchButton _searchText' onClick={onPressSearch}>

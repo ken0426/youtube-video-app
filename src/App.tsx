@@ -3,7 +3,7 @@ import Home from './components/Home';
 
 function App() {
   return (
-    <div className='App _mainBackGroundColor'>
+    <div className='App _mainBackGroundColorBlack'>
       <Home />
     </div>
   );
