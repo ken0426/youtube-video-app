@@ -1,15 +1,9 @@
-import { useState } from 'react';
+import SearchArea from './SearchArea';
 
 const Home = () => {
-  const [text, setText] = useState('');
-
-  const onPressSearch = () => {
-    console.log(text);
-  };
   return (
     <>
-      <input onChange={(e) => setText(e.target.value)}></input>
-      <button onClick={onPressSearch}>検索</button>
+      <SearchArea />
     </>
   );
 };
