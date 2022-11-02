@@ -1,4 +1,8 @@
 /** 共通のスタイル */
+a {
+  text-decoration: none;
+}
+
 .App {
   text-align: center;
   height: 100vh;
