@@ -1,14 +1,39 @@
 /** 共通のスタイル */
+body {
+  background-color: black;
+}
+
 a {
   text-decoration: none;
+}
+
+p {
+  margin: 0;
 }
 
 .App {
   text-align: center;
 }
 
+.header {
+  width: 100%;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  border-bottom: solid 0.8px rgb(93, 93, 93);
+}
+
 ._mainBackGroundColorBlack {
   background-color: black;
+}
+
+._mainBackGroundColorWhite {
+  background-color: #fff;
+}
+
+._textColorWhite {
+  color: #fff;
 }
 
 ._searchText {
@@ -16,7 +41,7 @@ a {
 }
 
 ._backGroundColor {
-  background-color: #181818;
+  background-color: #3b3b3b;
 }
 
 /* なぜかできない */
