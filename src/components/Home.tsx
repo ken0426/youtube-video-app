@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import SearchArea from './SearchArea';
 import VideoArea from './VideoArea';
 
