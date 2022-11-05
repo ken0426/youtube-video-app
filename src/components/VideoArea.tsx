@@ -10,15 +10,17 @@ const VideoArea = () => {
 
   const videoSortData = videoData.sort(
     (a: { videoPostedDate: string }, b: { videoPostedDate: string }): any => {
+      let sortResult;
       if (isNewVideoList) {
         if (moment(a.videoPostedDate) > moment(b.videoPostedDate)) {
-          return -1;
+          sortResult = -1;
         }
       } else {
         if (moment(a.videoPostedDate) < moment(b.videoPostedDate)) {
-          return -1;
+          sortResult = -1;
         }
       }
+      return sortResult;
     }
   );
   return (
