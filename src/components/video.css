@@ -11,6 +11,21 @@
   width: 100%;
 }
 
+.videoContents:after {
+  content: '';
+  display: block;
+  width: 250px;
+  height: auto;
+}
+
+.videoContents:before {
+  content: '';
+  display: block;
+  width: 250px;
+  height: auto;
+  order: 1;
+}
+
 .videoItem {
   width: 250px;
   height: auto;
