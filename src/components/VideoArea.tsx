@@ -1,8 +1,8 @@
-import './video.css';
 import { videoData } from '../moc/mocData';
 import SelectArea from './SelectArea';
 import { useState } from 'react';
 import moment from 'moment';
+import './video.css';
 
 const VideoArea = () => {
   const [isNewVideoList, setIsNewVideoList] = useState(true);

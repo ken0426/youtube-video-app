@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import './searchArea.css';
 import searchIcon from '../images/searchIcon.png';
+import './searchArea.css';
 
 const SearchArea = () => {
   const [text, setText] = useState('');
