@@ -10,7 +10,8 @@ const SearchArea = () => {
     if (text.trim() === '') {
       alert('テキストを入力してください');
     } else {
-      YoutubeSearch(text);
+      const aa =  YoutubeSearch(text);
+      console.log('この中身は？', aa)
       setText('');
     }
   };

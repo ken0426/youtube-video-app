@@ -14,7 +14,6 @@ const SelectArea = ({
   const onClick = ({ id }: { id: number }) => {
     setSelectButtonId(id);
     if (id === selectButtonId) {
-      console.log(selectButtonId);
     }
     if (id === 1) {
       setIsNewVideoList(true);
