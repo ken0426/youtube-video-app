@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { YoutubeSearch } from '../api/Api';
 import searchIcon from '../images/searchIcon.png';
 import './searchArea.css';
 
@@ -6,10 +7,10 @@ const SearchArea = () => {
   const [text, setText] = useState('');
 
   const onPressSearch = () => {
-    console.log(text);
     if (text.trim() === '') {
       alert('テキストを入力してください');
     } else {
+      YoutubeSearch(text);
       setText('');
     }
   };
