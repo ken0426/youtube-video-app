@@ -20,7 +20,8 @@ export const callApi: any = async (keyword: string) => {
     const res = await axios(config);
 
     const allPageVideoData = res.data.pageInfo.totalResults;
-    let page = 50;
+    const resultsPerPage = res.data.pageInfo.resultsPerPage;
+    let page = resultsPerPage;
     let nextData = undefined;
     let resVideoData: any = [];
 
