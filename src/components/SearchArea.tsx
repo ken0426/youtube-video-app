@@ -1,20 +1,23 @@
 import { useState } from 'react';
-import { YoutubeSearch } from '../api/Api';
+import { callApi } from '../api/Api';
 import searchIcon from '../images/searchIcon.png';
 import './searchArea.css';
 
 const SearchArea = () => {
   const [text, setText] = useState('');
 
-  const onPressSearch = () => {
+  let apiVideoData = [];
+
+  const onPressSearch = async () => {
     if (text.trim() === '') {
       alert('テキストを入力してください');
     } else {
-      const aa =  YoutubeSearch(text);
-      console.log('この中身は？', aa)
-      setText('');
+      const resData = await callApi(text);
+      console.log('この中身は？', resData);
+      apiVideoData.push(resData.items);
     }
   };
+
   return (
     <div className='searchArea'>
       <input
