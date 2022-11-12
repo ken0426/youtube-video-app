@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { callApi } from '../api/Api';
+import { videoList } from '../api/videoList';
 import searchIcon from '../images/searchIcon.png';
 import './searchArea.css';
 
 const SearchArea = () => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState('UCFBkdFQ3iYvh882EjPnreYw');
 
   let apiVideoData = [];
 
@@ -13,8 +14,8 @@ const SearchArea = () => {
       alert('テキストを入力してください');
     } else {
       const resData = await callApi(text);
-      console.log('この中身は？', resData);
-      apiVideoData.push(resData.items);
+      const videoData = await videoList(resData);
+      console.log(videoData);
     }
   };
 

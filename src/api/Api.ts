@@ -53,11 +53,15 @@ export const callApi: any = async (keyword: string) => {
           : page + allPageVideoData - page;
     }
 
-    // videoIdを使ってresVideoDataに入っている一つ一つの動画の詳細を取得する関数
-
     return resVideoData;
-  } catch (error) {
-    alert('URLが間違っています。もしくはチャンネルが存在しません。');
+  } catch (error: any) {
+    if (error?.response?.status === 403) {
+      alert(
+        'サーバーが落ちている可能性があります。時間をおいてお試しください。'
+      );
+    } else {
+      alert('URLが間違っています。もしくはチャンネルが存在しません。');
+    }
     throw error;
   }
 };
