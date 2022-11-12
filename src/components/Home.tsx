@@ -1,13 +1,15 @@
+import { useState } from 'react';
 import SearchArea from './SearchArea';
 import VideoArea from './VideoArea';
 
 const Home = () => {
+  const [videoData, setVideoData] = useState([]);
   return (
     <>
       <div className='header _mainBackGroundColorBlack'>
-        <SearchArea />
+        <SearchArea setVideoData={setVideoData} />
       </div>
-      <VideoArea />
+      <VideoArea videoData={videoData} />
     </>
   );
 };

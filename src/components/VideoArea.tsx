@@ -1,10 +1,13 @@
-import { videoData } from '../moc/mocData';
 import SelectArea from './SelectArea';
 import { useState } from 'react';
 import moment from 'moment';
 import './video.css';
 
-const VideoArea = () => {
+interface Props {
+  videoData: any;
+}
+
+const VideoArea = ({ videoData }: Props) => {
   const [isNewVideoList, setIsNewVideoList] = useState(true);
   const [keyWord, setKeyWord] = useState('');
 
@@ -25,40 +28,43 @@ const VideoArea = () => {
   );
   return (
     <div className='videoArea'>
-      <SelectArea
-        setIsNewVideoList={setIsNewVideoList}
-        setKeyWord={setKeyWord}
-      />
+      {videoData.length && (
+        <SelectArea
+          setIsNewVideoList={setIsNewVideoList}
+          setKeyWord={setKeyWord}
+        />
+      )}
       {keyWord === '' ? (
         <div className='videoContents'>
-          {videoSortData.map((item, key) => {
-            return (
-              <a
-                key={key}
-                className='videoItem _mainBackGroundColorBlack'
-                href={item.videoLink}
-                target='_blank'
-                rel='noreferrer'
-              >
-                <div className='thumbnail'>
-                  <img
-                    src={item.videoImag}
-                    alt='サムネイル'
-                    className='video'
-                  ></img>
-                  <div className='videoTime _mainBackGroundColorBlack'>
-                    {item.videoTime}
+          {videoSortData &&
+            videoSortData.map((item: any, key: number) => {
+              return (
+                <a
+                  key={key}
+                  className='videoItem _mainBackGroundColorBlack'
+                  href={item.videoLink}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <div className='thumbnail'>
+                    <img
+                      src={item.videoImag}
+                      alt='サムネイル'
+                      className='video'
+                    ></img>
+                    <div className='videoTime _mainBackGroundColorBlack'>
+                      {item.videoTime}
+                    </div>
                   </div>
-                </div>
-                <p className='videoTitle'>{item.videoTitle}</p>
-                <div className='videoFooter'>{item.videoFooter}</div>
-              </a>
-            );
-          })}
+                  <p className='videoTitle'>{item.videoTitle}</p>
+                  <div className='videoFooter'>{item.videoFooter}</div>
+                </a>
+              );
+            })}
         </div>
       ) : (
         <div className='videoContents'>
-          {videoSortData.map((item, key) => {
+          {videoSortData.map((item: any, key: number) => {
             return (
               item.videoTitle.match(keyWord) && (
                 <a

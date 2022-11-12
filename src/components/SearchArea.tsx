@@ -4,10 +4,14 @@ import { videoList } from '../api/videoList';
 import searchIcon from '../images/searchIcon.png';
 import './searchArea.css';
 
-const SearchArea = () => {
+interface Props {
+  setVideoData: (e: []) => void;
+}
+
+const SearchArea = ({ setVideoData }: Props) => {
   const [text, setText] = useState('UCFBkdFQ3iYvh882EjPnreYw');
 
-  let apiVideoData = [];
+  // let apiVideoData = [];
 
   const onPressSearch = async () => {
     if (text.trim() === '') {
@@ -15,7 +19,7 @@ const SearchArea = () => {
     } else {
       const resData = await callApi(text);
       const videoData = await videoList(resData);
-      console.log(videoData);
+      setVideoData(videoData);
     }
   };
 
