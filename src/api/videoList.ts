@@ -34,7 +34,7 @@ export const videoList: any = async (resData: any) => {
         const elapsedDate = today.diff(upVideoDate, 'days');
         detailVideoData.push({
           videoLink: '', // 動画のリンク
-          videoImag: await videoDetailData?.thumbnails.default.url, // サムネイル
+          videoImag: await videoDetailData?.thumbnails.medium.url, // サムネイル
           videoTime: '10:00', // 動画の再生時間
           videoTitle: await videoDetailData?.title, // 動画のタイトル
           videoFooter: `100回・${elapsedDate}日前`, // 再生回数＋何日前の投稿か
