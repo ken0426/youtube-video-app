@@ -11,8 +11,6 @@ interface Props {
 const SearchArea = ({ setVideoData }: Props) => {
   const [text, setText] = useState('UCFBkdFQ3iYvh882EjPnreYw');
 
-  // let apiVideoData = [];
-
   const onPressSearch = async () => {
     if (text.trim() === '') {
       alert('テキストを入力してください');
