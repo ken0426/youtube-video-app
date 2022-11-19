@@ -16,7 +16,7 @@ export const videoList: any = async (resData: any) => {
             'Content-Type': 'application/json; charset=utf-8',
           },
           params: {
-            part: 'snippet, contentDetails',
+            part: 'snippet, contentDetails, statistics',
             id: item.id.videoId,
             key: process.env.REACT_APP_YOUTUBE_API_KEY, // 取得したAPIキーを設定
           },
@@ -38,9 +38,9 @@ export const videoList: any = async (resData: any) => {
         const videoId = resData.data.items[0].id;
         console.log(regResult);
 
-        var hour = regResult[1];
-        var minutes = regResult[2];
-        var sec = regResult[3];
+        let hour = regResult[1];
+        let minutes = regResult[2];
+        let sec = regResult[3];
 
         if (hour === undefined) {
           hour = '00';
