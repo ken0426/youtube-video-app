@@ -36,6 +36,9 @@ export const videoList: any = async (resData: any) => {
         /** 動画の詳細の中にあるサムネイルやタイトルの情報を取得 */
         const videoDetailData = await resData.data.items[0]?.snippet;
 
+        /** 動画の再生回数の取得 */
+        const videoCount = resData.data.items[0].statistics.viewCount;
+
         /** 動画の再生時間の取得 */
         const playTime = await resData.data.items[0]?.contentDetails.duration;
 
@@ -96,12 +99,37 @@ export const videoList: any = async (resData: any) => {
             ? minutes + ':' + sec
             : hour + ':' + minutes + ':' + sec;
 
+        let videoCountData;
+        if (videoCount.length < 5) {
+          videoCountData = videoCount;
+        } else if (videoCount.length === 5) {
+          const isTextZero = videoCount.substr(1, 1);
+          if (isTextZero === '0') {
+            videoCountData = `${videoCount.substr(0, 1)}万`; // 例）1万回
+          } else {
+            videoCountData = `${videoCount.substr(0, 1)}.${isTextZero}万`; // 例）1.1万回
+          }
+        } else if (videoCount.length === 6) {
+          videoCountData = `${videoCount.substr(0, 2)}万`; // 例）10万回
+        } else if (videoCount.length === 7) {
+          videoCountData = `${videoCount.substr(0, 3)}万`; // 例）100万回
+        } else if (videoCount.length === 7) {
+          videoCountData = `${videoCount.substr(0, 4)}万`; // 例）1000万回
+        } else if (videoCount.length === 8) {
+          const isTextZero = videoCount.substr(1, 1);
+          if (isTextZero === '0') {
+            videoCountData = `${videoCount.substr(0, 5)}億`; // 例）1億回
+          } else {
+            videoCountData = `${videoCount.substr(0, 5)}.${isTextZero}億`; // 例）1.1億回
+          }
+        }
+
         detailVideoData.push({
           videoLink: `https://www.youtube.com/watch?v=${videoId}`, // 動画のリンク
           videoImag: await videoDetailData?.thumbnails.medium.url, // サムネイル
           videoTime: videoTime, // 動画の再生時間
           videoTitle: await videoDetailData?.title, // 動画のタイトル
-          videoFooter: `100回・${elapsedDate}日前`, // 再生回数＋何日前の投稿か
+          videoFooter: `${videoCountData} 回視聴・${elapsedDate}日前`, // 再生回数＋何日前の投稿か
           videoPostedDate: moment(upVideoDate).format('YYYY/MM/DD'),
         });
         detailCount = detailCount + 1;
