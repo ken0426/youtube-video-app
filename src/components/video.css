@@ -51,7 +51,7 @@
 
 .videoTime {
   position: absolute;
-  width: 42px;
+  min-width: 42px;
   height: 12px;
   padding: 4px;
   margin: 4px;
@@ -62,6 +62,7 @@
   line-height: 12px;
   font-weight: bold;
   border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .videoTitle {

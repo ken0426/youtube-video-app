@@ -52,9 +52,7 @@ const VideoArea = ({ videoData }: Props) => {
                       alt='サムネイル'
                       className='video'
                     ></img>
-                    <div className='videoTime _mainBackGroundColorBlack'>
-                      {item.videoTime}
-                    </div>
+                    <div className='videoTime'>{item.videoTime}</div>
                   </div>
                   <p className='videoTitle'>{item.videoTitle}</p>
                   <div className='videoFooter'>{item.videoFooter}</div>
