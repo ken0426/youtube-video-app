@@ -29,19 +29,38 @@ export const videoList: any = async (resData: any) => {
     while (requestPramData.length >= detailCount) {
       if (requestPramData[detailCount] !== undefined) {
         const reg = new RegExp('^PT([0-9]*H)?([0-9]*M)?([0-9]*S)?');
-        const resData = await axios(requestPramData[detailCount]);
-        const videoDetailData = await resData.data.items[0]?.snippet;
-        const playTime = await resData.data.items[0]?.contentDetails.duration;
-        const upVideoDate = moment(await videoDetailData?.publishedAt);
-        const elapsedDate = today.diff(upVideoDate, 'days');
-        const regResult = playTime.match(reg);
-        const videoId = resData.data.items[0].id;
-        console.log(regResult);
 
+        /** 動画の詳細データの取得 */
+        const resData = await axios(requestPramData[detailCount]);
+
+        /** 動画の詳細の中にあるサムネイルやタイトルの情報を取得 */
+        const videoDetailData = await resData.data.items[0]?.snippet;
+
+        /** 動画の再生時間の取得 */
+        const playTime = await resData.data.items[0]?.contentDetails.duration;
+
+        /** 動画がアップロードされた日付の取得 */
+        const upVideoDate = moment(await videoDetailData?.publishedAt);
+
+        /** 今日の日付と比べて、その動画が何日前なのかを計算するロジック */
+        const elapsedDate = today.diff(upVideoDate, 'days');
+
+        /** 動画の再生時間を時間、分、秒で配列にするロジック */
+        const regResult = playTime.match(reg);
+
+        /** 動画のIDの取得 */
+        const videoId = resData.data.items[0].id;
+
+        /** 動画の時間を取得 */
         let hour = regResult[1];
+
+        /** 動画の分を取得 */
         let minutes = regResult[2];
+
+        /** 動画の秒を取得 */
         let sec = regResult[3];
 
+        /** 動画の時間を正規表現から文字列に変換するロジック */
         if (hour === undefined) {
           hour = '00';
         } else {
@@ -51,6 +70,7 @@ export const videoList: any = async (resData: any) => {
           }
         }
 
+        /** 動画の分を正規表現から文字列に変換するロジック */
         if (minutes === undefined) {
           minutes = '00';
         } else {
@@ -60,6 +80,7 @@ export const videoList: any = async (resData: any) => {
           }
         }
 
+        /** 動画の秒を正規表現から文字列に変換するロジック */
         if (sec === undefined) {
           sec = '00';
         } else {
@@ -69,12 +90,11 @@ export const videoList: any = async (resData: any) => {
           }
         }
 
+        /** 動画の再生時間を正規表現から文字列に置き換えたあと、画面に表示できるように結合するロジック */
         const videoTime =
           hour === '00'
             ? minutes + ':' + sec
             : hour + ':' + minutes + ':' + sec;
-
-        console.log(videoTime);
 
         detailVideoData.push({
           videoLink: `https://www.youtube.com/watch?v=${videoId}`, // 動画のリンク
@@ -89,8 +109,6 @@ export const videoList: any = async (resData: any) => {
         detailCount = detailCount + 1;
       }
     }
-
-    console.log(detailVideoData);
 
     return detailVideoData;
   } catch (error: any) {
